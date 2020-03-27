@@ -28,7 +28,7 @@ class ArticleController extends AbstractController {
     $articles = $repository->findAllPublishedOrderedByNewest();
 
     $logger->info('Inside the controller!');
-    
+
     return $this->render('article/homepage.html.twig', [
       'articles' => $articles,
     ]);
