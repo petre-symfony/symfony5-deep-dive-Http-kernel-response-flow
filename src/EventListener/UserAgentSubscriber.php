@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class UserAgentSubscriber implements EventSubscriberInterface {
@@ -20,6 +21,9 @@ class UserAgentSubscriber implements EventSubscriberInterface {
 	}
 
 	public function onKernelRequest(RequestEvent $event){
+		$event->setResponse(new Response(
+			'Ah, ah, ah: you didn\'t say the magic word'
+		));
 		$request = $event->getRequest();
 
 		$userAgent = $request->headers->get('User-Agent');
