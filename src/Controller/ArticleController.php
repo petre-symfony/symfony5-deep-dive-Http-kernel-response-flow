@@ -35,7 +35,7 @@ class ArticleController extends AbstractController {
   }
 
   /**
-   * @Route("/news/{slug}", name="article_show")
+   * @Route("/news/{slug}", name="article_show", defaults={"foo": "bar"})
    */
   public function show(Article $article, SlackClient $slack) {
     if ($article->getSlug() === 'khaaaaaan') {
