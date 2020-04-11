@@ -42,6 +42,7 @@ class ArticleController extends AbstractController {
    * @Route("/news/{slug}", name="article_show")
    */
   public function show($slug, SlackClient $slack, ArticleRepository $articleRepository) {
+  	return;
   	$article = $articleRepository->findOneBy(['slug' => $slug]);
 
   	if(!$article){
