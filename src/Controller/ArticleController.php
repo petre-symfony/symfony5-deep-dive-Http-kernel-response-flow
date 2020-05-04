@@ -10,6 +10,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Exception\NoConfigurationException;
 
 class ArticleController extends AbstractController {
   /**
@@ -45,8 +46,8 @@ class ArticleController extends AbstractController {
   	$article = $articleRepository->findOneBy(['slug' => $slug]);
 
   	if(!$article){
-  		throw $this->createNotFoundException();
-		}
+      throw $this->createNotFoundException('', new NoConfigurationException());
+    }
 
     if ($article->getSlug() === 'khaaaaaan') {
       $slack->sendMessage('Kahn', 'Ah, Kirk, my old friend...');
