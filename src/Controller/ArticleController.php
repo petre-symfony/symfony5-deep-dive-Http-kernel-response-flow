@@ -46,7 +46,7 @@ class ArticleController extends AbstractController {
   	$article = $articleRepository->findOneBy(['slug' => $slug]);
 
   	if(!$article){
-      throw $this->createNotFoundException('', new NoConfigurationException());
+      throw $this->createNotFoundException();
     }
 
     if ($article->getSlug() === 'khaaaaaan') {
