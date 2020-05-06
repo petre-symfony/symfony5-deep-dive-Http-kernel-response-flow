@@ -23,7 +23,9 @@ class UserAgentSubscriber implements EventSubscriberInterface {
 	public function onKernelRequest(RequestEvent $event){
 		$request = $event->getRequest();
 
-		$request->attributes->set('_controller', function(){
+		$request->attributes->set('_controller', function($slug = null){
+		    dd($slug);
+
 		    return new Response('I just took over the controller!');
         });
 
