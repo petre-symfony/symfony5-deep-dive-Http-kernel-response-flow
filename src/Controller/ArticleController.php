@@ -36,6 +36,7 @@ class ArticleController extends AbstractController {
 
     $logger->info('Inside the controller!');
 
+    /*
     //manual sub-request example
     $request = new Request();
     $request->attributes->set('_controller', 'App\\Controller\\PartialController::trendingQuotes');
@@ -45,6 +46,7 @@ class ArticleController extends AbstractController {
       HttpKernelInterface::SUB_REQUEST
     );
     dump($response);
+    */
 
     return $this->render('article/homepage.html.twig', [
       'articles' => $articles,
