@@ -36,5 +36,7 @@ class UserAgentSubscriber implements EventSubscriberInterface {
 			'The User-Agent is "%s"',
 			$userAgent
 		));
+		$isMac = stripos($userAgent, 'Mac') !== false;
+		$request->attributes->set('isMac', $isMac);
 	}
 }
