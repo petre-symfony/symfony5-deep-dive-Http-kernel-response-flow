@@ -2,8 +2,10 @@
 namespace App\EventListener;
 
 
+use phpDocumentor\Reflection\Types\Boolean;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -40,4 +42,14 @@ class UserAgentSubscriber implements EventSubscriberInterface {
 			$userAgent
 		));
 	}
+
+	private function isMac(Request $request): bool {
+      if($request->query->has('mac')){
+        return $request->query->getBoolean('mac');
+      }
+
+      $userAgent = $request->headers->get('User-Agent');
+
+      return stripos($userAgent, 'Linux') !== false;
+    }
 }
