@@ -8,10 +8,12 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 class IsMacArgumentValueResolver implements ArgumentValueResolverInterface {
   public function supports(Request $request, ArgumentMetadata $argument){
-    // TODO: Implement supports() method.
+    return $argument->getName() === 'isMac';
   }
 
   public function resolve(Request $request, ArgumentMetadata $argument){
-    // TODO: Implement resolve() method.
+    $userAgent = $request->headers->get('User-Agent');
+
+    yield stripos($userAgent, 'Mac') !== false;
   }
 }
