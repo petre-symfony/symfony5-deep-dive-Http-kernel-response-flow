@@ -41,6 +41,7 @@ class UserAgentSubscriber implements EventSubscriberInterface {
 			'The User-Agent is "%s"',
 			$userAgent
 		));
+		$request->attributes->set('_isMac', $this->isMac($request));
 	}
 
 	private function isMac(Request $request): bool {

@@ -8,10 +8,10 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 class IsMacArgumentValueResolver implements ArgumentValueResolverInterface {
   public function supports(Request $request, ArgumentMetadata $argument){
-    return $argument->getName() === 'isMac';
+    return $argument->getName() === 'isMac' && $request->attributes->has('_isMac');
   }
 
   public function resolve(Request $request, ArgumentMetadata $argument){
-
+    yield $request->attributes->get('_isMac');
   }
 }
